@@ -3,6 +3,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include <gl_objects/gl_object.h>
+
 struct
 {
     GLuint rotate_location;
@@ -15,7 +17,8 @@ struct
     int height, width;
 } window_size;
 
-void create_vbo();
+extern gl_object cube;
+
 void render(GLFWwindow* window);
 
 #endif //GL_RENDER_H_

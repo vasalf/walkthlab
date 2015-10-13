@@ -4,56 +4,11 @@
 #include <gl_render.h>
 #include <vector_math.h>
 
-static GLuint VBOs[6];
-static vect3f colors[6];
-
-void create_vbo()
-{
-    vect3f vertices[24] = {make_vect3f(-0.5f, -0.5f, -0.5f),
-        make_vect3f(0.5f, -0.5f, -0.5f),
-        make_vect3f(0.5f, 0.5f, -0.5f),
-        make_vect3f(-0.5f, 0.5f, -0.5f),
-        
-        make_vect3f(-0.5f, -0.5f, 0.5f),
-        make_vect3f(0.5f, -0.5f, 0.5f),
-        make_vect3f(0.5f, 0.5f, 0.5f),
-        make_vect3f(-0.5f, 0.5f, 0.5f),
-
-        make_vect3f(0.5f, -0.5f, -0.5f),
-        make_vect3f(0.5f, 0.5f, -0.5f),
-        make_vect3f(0.5f, 0.5f, 0.5f),
-        make_vect3f(0.5f, -0.5f, 0.5f),
-
-        make_vect3f(-0.5f, -0.5f, -0.5f),
-        make_vect3f(-0.5f, 0.5f, -0.5f),
-        make_vect3f(-0.5f, 0.5f, 0.5f),
-        make_vect3f(-0.5f, -0.5f, 0.5f),
-
-        make_vect3f(-0.5f, -0.5f, -0.5f),
-        make_vect3f(0.5f, -0.5f, -0.5f),
-        make_vect3f(0.5f, -0.5f, 0.5f),
-        make_vect3f(-0.5f, -0.5f, 0.5f),
-
-        make_vect3f(-0.5f, 0.5f, -0.5f),
-        make_vect3f(0.5f, 0.5f, -0.5f),
-        make_vect3f(0.5f, 0.5f, 0.5f),
-        make_vect3f(-0.5f, 0.5f, 0.5f)
-    };
-    colors[0] = make_vect3f(1, 0, 0);
-    colors[1] = make_vect3f(0, 1, 0);
-    colors[2] = make_vect3f(0, 0, 1);
-    colors[3] = make_vect3f(0, 1, 1);
-    colors[4] = make_vect3f(1, 0, 1);
-    colors[5] = make_vect3f(1, 1, 0);
-    glGenBuffers(6, VBOs);
-    for (int i = 0; i < 6; i++)
-    {
-        glBindBuffer(GL_ARRAY_BUFFER, VBOs[i]);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vect3f) * 4, vertices + 4 * i, GL_STATIC_DRAW);
-    }
-}
+#include <gl_objects/gl_object.h>
 
 static float cur_rotate = 0;
+
+gl_object cube;
 
 void render(GLFWwindow* window)
 {
@@ -67,17 +22,7 @@ void render(GLFWwindow* window)
     glUniformMatrix4fv(gl_uniforms.window_location, 1, GL_TRUE, &window_size_matrix.m[0][0]);
     cur_rotate += 0.0003;
 
-    for (int i = 0; i < 6; i++)
-    {
-        glUniform3f(gl_uniforms.color_location, colors[i].x, colors[i].y, colors[i].z);
+    draw_gl_object(cube);
 
-        glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, VBOs[i]);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-        glDrawArrays(GL_QUADS, 0, 4);
-
-        glDisableVertexAttribArray(0);
-    }
     glfwSwapBuffers(window);
 }
