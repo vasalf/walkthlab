@@ -56,4 +56,12 @@ matrix4fv make_zrotation_matrix4fv(float ang)
     return res;
 }
 
-
+matrix4fv matrix4fv_product(matrix4fv a, matrix4fv b)
+{
+    matrix4fv res = make_zero_matrix4fv();
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            for (int k = 0; k < 4; k++)
+                res.m[i][j] += a.m[i][k] * b.m[k][j];
+    return res;
+}

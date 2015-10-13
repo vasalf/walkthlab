@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdio.h>
 
 #include <GL/glew.h>
 #include <GL/gl.h>
@@ -49,9 +50,9 @@ gl_object make_cuboid(vect3f p, vect3f diag)
     glBufferData(GL_ARRAY_BUFFER, sizeof(panel), panel, GL_STATIC_DRAW);
    //top
     panel[0] = make_vect3f(p.x + diag.x, p.y + diag.y, p.z + diag.z);
-    panel[1] = make_vect3f(p.x + diag.x, p.y, p.z + diag.z);
-    panel[2] = make_vect3f(p.x, p.y, p.z + diag.z);
-    panel[3] = make_vect3f(p.x, p.y + diag.y, p.z + diag.z);
+    panel[1] = make_vect3f(p.x, p.y + diag.y, p.z + diag.z);
+    panel[2] = make_vect3f(p.x, p.y + diag.y, p.z);
+    panel[3] = make_vect3f(p.x + diag.x, p.y + diag.y, p.z);
     glBindBuffer(GL_ARRAY_BUFFER, obj.VBOs[5]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(panel), panel, GL_STATIC_DRAW);
     return obj;

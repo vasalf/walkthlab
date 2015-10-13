@@ -14,7 +14,7 @@ void render(GLFWwindow* window)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    matrix4fv rotation = make_yrotation_matrix4fv(cur_rotate);
+    matrix4fv rotation = matrix4fv_product(matrix4fv_product(make_xrotation_matrix4fv(cur_rotate), make_yrotation_matrix4fv(cur_rotate)), make_zrotation_matrix4fv(cur_rotate));
     matrix4fv window_size_matrix = make_one_matrix4fv();
     window_size_matrix.m[1][1] = (float)window_size.width / (float)window_size.height;
 

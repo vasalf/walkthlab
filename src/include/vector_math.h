@@ -20,4 +20,6 @@ matrix4fv make_xrotation_matrix4fv(float ang);
 matrix4fv make_yrotation_matrix4fv(float ang);
 matrix4fv make_zrotation_matrix4fv(float ang);
 
+matrix4fv matrix4fv_product(matrix4fv a, matrix4fv b);
+
 #endif //VECTOR_MATH_H_
