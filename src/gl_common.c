@@ -22,6 +22,8 @@ void init_gl_libs()
     glfwSetErrorCallback(glfw_error_callback);
 
     window = glfwCreateWindow(640, 480, "platypus", NULL, NULL);
+    window_size.height = 480;
+    window_size.width = 640;
     assert(window);
     glfwMakeContextCurrent(window);
 
@@ -101,4 +103,9 @@ void init_shaders(const char* vsh_filename, const char* fsh_filename)
     
     gl_uniforms.rotate_location = glGetUniformLocation(sprog, "rotate");
     assert(gl_uniforms.rotate_location != (GLuint)(~0));
+    gl_uniforms.color_location = glGetUniformLocation(sprog, "color");
+    assert(gl_uniforms.color_location != (GLuint)(~0));
+    gl_uniforms.window_location = glGetUniformLocation(sprog, "window");
+    assert(gl_uniforms.window_location != (GLuint)(~0));
+
 }

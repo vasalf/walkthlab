@@ -6,7 +6,14 @@
 struct
 {
     GLuint rotate_location;
+    GLuint color_location;
+    GLuint window_location;
 } gl_uniforms;
+
+struct
+{
+    int height, width;
+} window_size;
 
 void create_vbo();
 void render(GLFWwindow* window);
