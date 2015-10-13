@@ -19,9 +19,8 @@ static GLFWwindow* window;
 void init_gl_libs()
 {
     assert(glfwInit());
-    glfwSetErrorCallback(glfw_error_callback);
-
     window = glfwCreateWindow(640, 480, "platypus", NULL, NULL);
+    glfwSetErrorCallback(glfw_error_callback);
     window_size.height = 480;
     window_size.width = 640;
     assert(window);
