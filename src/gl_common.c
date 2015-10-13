@@ -98,4 +98,7 @@ void init_shaders(const char* vsh_filename, const char* fsh_filename)
     glGetProgramiv(sprog, GL_VALIDATE_STATUS, &success);
     assert(success);
     glUseProgram(sprog);
+    
+    gl_uniforms.rotate_location = glGetUniformLocation(sprog, "rotate");
+    assert(gl_uniforms.rotate_location != (GLuint)(~0));
 }

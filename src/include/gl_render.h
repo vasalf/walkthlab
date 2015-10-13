@@ -3,6 +3,11 @@
 
 #include <GLFW/glfw3.h>
 
+struct
+{
+    GLuint rotate_location;
+} gl_uniforms;
+
 void create_vbo();
 void render(GLFWwindow* window);
 

@@ -1,6 +1,8 @@
 attribute vec3 Position;
 
+uniform mat4 rotate;
+
 void main()
 {
-    gl_Position = vec4(Position, 1.0);
+    gl_Position = rotate * vec4(Position, 1.0);
 }
