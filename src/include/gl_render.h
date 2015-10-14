@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include <gl_objects/gl_object.h>
+#include <oneway_list.h>
 
 struct
 {
@@ -17,7 +18,7 @@ struct
     int height, width;
 } window_size;
 
-extern gl_object cube;
+extern oneway_gl_object_ptr_list to_draw;
 
 void render(GLFWwindow* window);
 

@@ -8,7 +8,7 @@
 
 static float cur_rotate = 0;
 
-gl_object cube;
+oneway_gl_object_ptr_list to_draw;
 
 void render(GLFWwindow* window)
 {
@@ -21,8 +21,11 @@ void render(GLFWwindow* window)
     glUniformMatrix4fv(gl_uniforms.rotate_location, 1, GL_TRUE, &rotation.m[0][0]);
     glUniformMatrix4fv(gl_uniforms.window_location, 1, GL_TRUE, &window_size_matrix.m[0][0]);
     cur_rotate += 0.0003;
-
-    draw_gl_object(cube);
+    
+    for (oneway_gl_object_ptr_list_iter* it = to_draw.begin; it != NULL; it = it->next)
+    {
+        draw_gl_object(*(it->val));
+    }
 
     glfwSwapBuffers(window);
 }
