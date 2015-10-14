@@ -44,7 +44,7 @@ ONEWAY_LIST_FUNC_DECL(TYPE)
 
 #define INIT_ONEWAY_LIST_DEF(TYPE) \
 oneway_##TYPE##_list init_oneway_##TYPE##_list() \
-{\
+{ \
     oneway_##TYPE##_list res;\
     res.begin = NULL; \
     res.end = NULL; \
@@ -53,16 +53,19 @@ oneway_##TYPE##_list init_oneway_##TYPE##_list() \
 
 #define ONEWAY_LIST_PUSH_DEF(TYPE) \
 void oneway_##TYPE##_list_push(oneway_##TYPE##_list* l, TYPE val) \
-{\
+{ \
     oneway_##TYPE##_list_iter* iter = malloc(sizeof(oneway_##TYPE##_list_iter)); \
     iter->val = val; \
     iter->next = NULL; \
     if (l->begin == NULL) \
         l->begin = iter; \
     else if (l->end == NULL) \
+    { \
+        l->begin->next = iter; \
         l->end = iter; \
+    } \
     else \
-    {\
+    { \
         l->end->next = iter; \
         l->end = iter; \
     } \
