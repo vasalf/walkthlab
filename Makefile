@@ -5,7 +5,7 @@ INCLUDEDIR=$(SRCDIR)/include
 CC=gcc
 
 STDCFLAGS=--std=c11 -march=native -pipe -I$(INCLUDEDIR)
-WARNCFLAGS=-Wall -Wextra -Werror -Wshadow -Wimplicit -Werror
+WARNCFLAGS=-Wall -Wextra -Wshadow -Wimplicit -Werror
 OPTIMIZECFLAGS=-O2
 GLLIBS=-lGL -lGLEW -lglfw
 CLIBS=-lm

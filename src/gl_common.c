@@ -82,6 +82,10 @@ static void add_shader(GLuint program, const char* text, GLenum type)
     glAttachShader(program, sobj);
 }
 
+#define GET_UNIFORM_LOCATION(NAME_IN_STRUCT, NAME_IN_SHADER) \
+gl_uniforms.NAME_IN_STRUCT = glGetUniformLocation(sprog, (NAME_IN_SHADER)); \
+assert(gl_uniforms.NAME_IN_STRUCT != (GLuint)(~0));
+
 void init_shaders(const char* vsh_filename, const char* fsh_filename)
 {
     GLuint sprog = glCreateProgram();
@@ -99,12 +103,12 @@ void init_shaders(const char* vsh_filename, const char* fsh_filename)
     glGetProgramiv(sprog, GL_VALIDATE_STATUS, &success);
     assert(success);
     glUseProgram(sprog);
-    
+ 
     gl_uniforms.rotate_location = glGetUniformLocation(sprog, "rotate");
     assert(gl_uniforms.rotate_location != (GLuint)(~0));
     gl_uniforms.color_location = glGetUniformLocation(sprog, "color");
     assert(gl_uniforms.color_location != (GLuint)(~0));
     gl_uniforms.window_location = glGetUniformLocation(sprog, "window");
     assert(gl_uniforms.window_location != (GLuint)(~0));
-
+    GET_UNIFORM_LOCATION(camera_location, "camera");
 }

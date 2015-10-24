@@ -56,6 +56,15 @@ matrix4fv make_zrotation_matrix4fv(float ang)
     return res;
 }
 
+matrix4fv make_movement_matrix4fv(vect3f v)
+{
+    matrix4fv res = make_one_matrix4fv();
+    res.m[0][3] = v.x;
+    res.m[1][3] = v.y;
+    res.m[2][3] = v.z;
+    return res;
+}
+
 matrix4fv matrix4fv_product(matrix4fv a, matrix4fv b)
 {
     matrix4fv res = make_zero_matrix4fv();

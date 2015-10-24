@@ -6,17 +6,22 @@
 #include <gl_objects/gl_object.h>
 #include <oneway_list.h>
 
-struct
+typedef struct
 {
     GLuint rotate_location;
     GLuint color_location;
     GLuint window_location;
-} gl_uniforms;
+    GLuint camera_location; 
+} gl_uniforms_struct;
 
-struct
+extern gl_uniforms_struct gl_uniforms;
+
+typedef struct
 {
     int height, width;
-} window_size;
+} window_size_struct;
+
+extern window_size_struct window_size;
 
 extern oneway_gl_object_ptr_list to_draw;
 
